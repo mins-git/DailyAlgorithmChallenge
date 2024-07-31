@@ -14,11 +14,9 @@ for tc in range(1, T+1):
 
     for r in range(N):
         for c in range(N):
-            if r == c:
+            if r == c :
                 sum += arr[r][c]
-            elif N - r == c:
+            elif N - r -1 == c:
                 sum += arr[r][c]
-
-
 
     print(sum)
