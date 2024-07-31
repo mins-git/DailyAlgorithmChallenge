@@ -4,7 +4,7 @@ sys.stdin = open('input.txt')
 
 
 # Testcase 수
-T = int(input())
+T = int(input()) # 주로 변하지 않는 상수는 대문자로 표현
 # Testcase 만큼 반복
 for tc in range(1, T+1):
     print(T) # 테스트 케이스 갯수 잘 들어오는지 확인
