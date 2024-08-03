@@ -1,0 +1,34 @@
+def min_coins(denominations, amount):
+    if amount < 0:
+        raise ValueError("Amount must be non-negative")
+    if not denominations:
+        raise ValueError("Denominations list must not be empty")
+
+    # 동전 종류를 내림차순으로 정렬합니다.
+    denominations.sort(reverse=True)
+
+    # 결과를 저장할 변수
+    total_coins = 0
+
+    # 남은 금액을 저장할 변수
+    remaining_amount = amount
+
+    for coin in denominations:
+        if remaining_amount == 0:
+            break
+
+        num_coins = remaining_amount // coin
+        total_coins += num_coins
+        remaining_amount -= num_coins * coin
+
+    # 남은 금액이 0이 아니라면, 주어진 동전 종류로 목표 금액을 만들 수 없는 경우입니다.
+    if remaining_amount > 0:
+        return -1  # 목표 금액을 만들 수 없는 경우를 나타내는 값
+
+    return total_coins
+
+# 예제 사용
+denominations = [25, 10, 5, 1]
+amount = 63
+
+print(min_coins(denominations, amount))  # 출력: 6 (25*2 + 10*1 + 5*1 + 1*3)
