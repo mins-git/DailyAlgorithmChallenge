@@ -28,3 +28,27 @@ for tc in range(1, T+1):
 
 
 
+
+
+# 2차풀이
+# def permutation(n):
+#     permutation = []
+#     for i in range(n + 1):
+#         if i == 0:
+#             permutation.append(1)
+#         else:
+#             numerator = 1
+#             denominator = 1
+#             for j in range(i):
+#                 numerator *= (n - j)
+#                 denominator *= j + 1
+#             permutation.append(numerator // denominator)
+#
+#     return permutation
+#
+#
+# for tc in range(1, T + 1):
+#     n = int(input())
+#     print(f'#{tc}')
+#     for i in range(n):
+#         print(*permutation(i))
