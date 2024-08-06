@@ -25,15 +25,14 @@ for adj in graph: # 정렬해야되는 이유: 탐색 순서의 비일관성이 
     adj.sort()
 
 visited = [False] * (N+1)
-
 graph2 = graph
-visited2 = [False] * (N+1)
 result1 =[]
 result2 =[]
 # M 개의 줄에 간선이 연결하는 정점의 번호
 # 1 > 2 > 4 > 3 으로 탐색할 거긴함. 그걸 구현해야돼.
 
 def dfs(graph, v, visited) :
+
     visited[v] = True
     result1.append(v)
     for i in graph[v]:
@@ -41,6 +40,7 @@ def dfs(graph, v, visited) :
             dfs(graph, i, visited) # 재귀 활용
 
     return(result1)
+
 dfs(graph, V, visited)
 print(*result1)
 
@@ -52,7 +52,7 @@ def bfs(graph, start, visited):
     #큐 구현을 위해 deque사용!
     queue = deque([start])
     # 현재노드는 방문 처리!
-    visited[start] = True
+    visited[start] = False # 재활용하기
     # 큐ㅠ가 빌때까지 진행하기.
     while queue:
         # 큐에서 하나의 원소를 뽑아서 출력하기.
@@ -60,12 +60,12 @@ def bfs(graph, start, visited):
         result2.append(v)
         # 해당 원소와 연결된 방문하지 않은 원소들 큐에다 넣기 (작은것부터 들어가게)
         for i in graph[v]:
-            if not visited[i]:
+            if visited[i]:
                 queue.append(i) # 큐에 싹다 추가하기!
-                visited[i] = True # 방문찍기
+                visited[i] = False # 방문찍기
     return result2
 
 
 
-bfs(graph2, V, visited2) # 그래프에서 1번 노드부터 시작할거고
+bfs(graph2, V, visited) # 그래프에서 1번 노드부터 시작할거고
 print(*result2)
