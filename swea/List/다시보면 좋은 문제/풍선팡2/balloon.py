@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open('input.txt')
+sys.stdi = open('input.txt')
 
 
 

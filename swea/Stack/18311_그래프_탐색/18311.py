@@ -2,13 +2,13 @@ import sys
 
 sys.stdin = open('input.txt')
 
-def dfs(start, v) :  # 초기 시작하는값과 노드를 받아올것임.
+def dfs(start) :  # 초기 시작하는값과 노드를 받아올것임.
     visited[start] = True
+    result.append(start)
     for i in graph[start]:
         if not visited[i]:
-            dfs(start, i)
+            dfs(i)
     return result
-
 
 
 T = 1
@@ -25,5 +25,8 @@ for tc in range(1, T+1):
         graph[x].append(y)
         graph[y].append(x)
 
-    print(graph)
-    dfs(1, V)
+    # print(graph)
+    result = dfs(1)
+    result = '-'.join(map(str, result))
+    print(f'#{tc} {result}')
+
