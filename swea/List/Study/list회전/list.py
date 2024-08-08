@@ -16,11 +16,11 @@ array = [[1,2,3], [4,5,6], [7,8,9]]
 for row in array:
     print(row)
 
-print()
+
 rotate_arr = rotate_90(array)
 
 
-print()
+
 
 for row in rotate_arr:
     print(row)
