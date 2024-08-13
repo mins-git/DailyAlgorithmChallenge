@@ -15,10 +15,9 @@ cut_count = int(input())
 cut_list = [list(map(int, input().split())) for _ in range(cut_count)] #[[0, 3], [1, 4], [0, 2]]
 matrix = [[0] * row for _ in range(col)]
 
+# 1 2 3 4 5 6
 # 0은 가로로자르기
 # 1은 세로로자르기
-result = 0
-result_arr = []
-# 가장 큰 넓이 추출.
-for r, c in cut_list:
-    # 만약 가로라면
+cut = {'0': 5, '1': 3, '2': 4, '3': 1, '4': 2, '5' : 0}
+print(cut[1])
+
