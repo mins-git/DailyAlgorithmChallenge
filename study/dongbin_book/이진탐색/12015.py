@@ -17,6 +17,12 @@ def length_of_lis(sequence):
             lis.append(num) # pos는 인덱스 요소이기 때문
         else:
             lis[pos] = num # num이 들어갈 위치에 lis를 넣어주기.
+            # 중복은 추가되지 않고 해당 값으로 교체되는 중임.
+            # ex) [10, 10, 20]
+            # bisect.bisect_left(lis,10) = 0반환되어 lis = [10]
+            # 두번째 bisect_left(lis,10)도 0이 반환되어 lis = [10]
+            # 이후 20이 적용되면 bisect_left(lis, 20) =1이 반환되어서 lis = [10,20]
+            # 결과적으로 최대값이 나오게됨.
 
     return len(lis) # 길이 출력해주면 가장 긴 증가하는 부분 수열 길이 나옴
 
