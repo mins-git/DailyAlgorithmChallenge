@@ -8,25 +8,28 @@ sys.stdin = open('input.txt')
 3 마지막 반드시 밟아
 
 """
-
 stair_count = int(input())
 
 # 메모이제이션 준비
-stair = [0] * (stair_count+1) #[0, 10, 20, 15, 25, 10, 20]
-dp = [0] * (stair_count+1)
+stair = [0] * (stair_count + 1)
+dp = [0] * (stair_count + 1)
 
-# dp[4] = max(dp[3] + dp[4], dp[2] + dp[4])
-# 2의 배수는 직전칸을 밟았으면 아돼
-
-for i in range(1, stair_count+1):
+# 계단의 점수 입력
+for i in range(1, stair_count + 1):
     stair[i] = int(input())
 
-dp[1] = stair[1]
-dp[2] = stair[2]
-dp[3] = max(dp[1] + dp[3], dp[2] + dp[3])
+# 예외 처리: 계단이 하나 또는 두 개일 경우
+if stair_count == 1:
+    print(stair[1]) # 런타임 에러떠서 예외처리 진행
+elif stair_count == 2:
+    print(stair[1] + stair[2])
+else:
+    dp[1] = stair[1]
+    dp[2] = stair[1] + stair[2]
+    dp[3] = max(stair[1] + stair[3], stair[2] + stair[3])
 
-for i in range(4, stair_count+1):
-    dp[i] = max(dp[i-1] + stair[i], dp[i-2] + stair[i])
-    # print(i, dp[i])
+    for i in range(4, stair_count + 1):
+        # 3전에서 뛰고 2칸 올라온 후 본인 / 2칸 한 번에 점프
+        dp[i] = max(dp[i - 3] + stair[i - 1] + stair[i], dp[i - 2] + stair[i])
 
-print((dp[stair_count]))
+    print(dp[stair_count])
