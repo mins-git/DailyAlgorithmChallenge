@@ -55,3 +55,38 @@ dp 에 최대 가치를 저장하기.
     3. 모두 다 담거나
 풀이:
 """
+
+
+
+
+"""
+N , K = map(int, input().split()) # 물건수 N / 무게 K
+arr = [list(map(int, input().split())) for _ in range(N)] # [[6, 13], [4, 8], [3, 6], [5, 12]]
+
+dp_result = [0] * (N+1)
+arr.sort(key = lambda x: (-x[1], x[0])) #[[6, 13], [5, 12], [4, 8], [3, 6]]
+                                        #[[1, 10], [7, 10], [4, 1], [2, 0]]
+
+print(arr)
+for j in range(N): # 앞에서부터 차례로 순회.
+    recent_weight = 0
+    dp = [0] * (N+1)
+    for i in range(j,N):
+        weight, value = arr[i] # 무게와 가치를 뽑아낸 후
+        if value == 0:
+            continue
+        # i에 이미담은 무게의 합이 들어와야함.
+        if recent_weight + weight <= K: # 만약 가방에 물건을 담았다라면,
+            dp[i] = max(dp[i-1], dp[i-1] + value)
+            if dp_result[i] < dp[i]:
+                dp_result[i] = sum(dp)
+            recent_weight += weight
+
+        # 가방에 물건을 담지 않았으면,
+        else:
+            dp[i+1] = max(dp[i], dp[i+1])
+            if dp_result[i+1] < dp[i+1]:
+                dp_result[i+1] = dp[i+1]
+
+print(max(dp_result))
+"""
