@@ -31,6 +31,7 @@ for i in range(N):
     if i + duration <= N:
         # 상담이 끝난날은 = 상담이 끝나는 날까지 얻을 수 있는 최대 이익 / 현재 날짜에서 상담을 했을대 얻을 수 있는 이익 비교
         dp[i+duration] = max(dp[i+duration], dp[i] + profit)
+
     # 상담을 진행하지 않으면
         # dp[i]를 dp[i+1]로 옮겨주기= 현재까지의 이익과 /상담 진행하지 않았을대 이익 비교
     dp[i + 1] = max(dp[i+1], dp[i])
