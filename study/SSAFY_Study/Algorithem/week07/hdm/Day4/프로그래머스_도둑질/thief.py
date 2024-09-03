@@ -10,7 +10,6 @@
 
 
 def solution(money):
-
     dp = [0] * len(money)
     # 첫집을 무조건 털 경우.
     dp[0] = money[0]
@@ -24,10 +23,9 @@ def solution(money):
 
     # 마지막집을 무조건 털 경우.
     sec_dp = [0] * len(money)
-    sec_dp[0] = 0
     sec_dp[1] = money[1]
 
-    for i in range(2, len(money) - 1):
+    for i in range(2, len(money)):
         sec_dp[i] = max(sec_dp[i - 1], money[i] + sec_dp[i - 2])
     b = max(sec_dp)
 
