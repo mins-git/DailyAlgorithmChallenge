@@ -5,18 +5,14 @@ INF = int(1e9)
 """"
 산봉우리에서 휴식 가능.
 휴식 없이 이동해야하는 시간 중 가장 긴 시간을 해당하는 등산 코스는 intensity
-
 intensity가 최소가 되는 등산 코스에 포함된 산봉우리 번호 + 최솟값을 정수에 담아 return
 intensity가 최소가 되는 등산 코스가 여러개면, 산봉우리의 번호가 가장 낮은 등산코스를 선택
-
 *
 point
 1. 결과적으로 필요한건 최소가격으로 봉우리를 다녀오는것.
 2. 최소가격 루트 중 max price를 저장하면됨.
 3. 최소 합 가격이 같은 루트가 있다면 봉우리가 낮은 숫자를 return 하면됨.
-
 """
-
 
 # n : 지점수
 # paths : 등산로 정보 담은 2차원 배열 [i,j,w]
@@ -49,6 +45,10 @@ def solution(n, paths, gates, summits):
 
     while q:  # q가비지 않으면,
         dist, now = heapq.heappop(q)  # 가장 최단 거리가 짧은 노드에 대한 정보 뽑기
+
+        # 현재 경로가 이미 계산된 경로보다 크면 무시
+        if dist > distance[now]:
+            continue
 
         # 만약 현재 노드가 봉우리면 탐색 멈추기
         if now in summits_set: # 이미 봉우리에 속해있다면, 더이상 탐색할 필요없으니 종료.
