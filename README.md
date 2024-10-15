@@ -2,10 +2,10 @@
 
 ## Java
 
-### Algorithm Learning Challenge (10/15 ~ 10/20)
+### Java Skill Boost: Daily Algorithm Challenge (10/15 ~ 10/20)
 
 #### Challenge Overview
-- **Objective**: Solve one Baekjoon algorithm problem each day to improve problem-solving skills.
+- **Objective**: : Solve one Baekjoon algorithm problem each day to strengthen Java programming skills and enhance problem-solving abilities.
 - **Duration**: 10/15 (TUE) - 10/20 (SUN)
 
 #### Daily Problem List
