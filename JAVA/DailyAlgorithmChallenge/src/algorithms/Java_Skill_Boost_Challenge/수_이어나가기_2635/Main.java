@@ -1,6 +1,6 @@
 package algorithms.Java_Skill_Boost_Challenge.수_이어나가기_2635;
 
-//import java.io.FileReader;
+import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-//        String filePath = "src/algorithms/Java_Skill_Boost_Challenge/수_이어나가기_2635/input.txt";
-//        BufferedReader br = new BufferedReader(new FileReader(filePath));
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String filePath = "src/algorithms/Java_Skill_Boost_Challenge/수_이어나가기_2635/input.txt";
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
         int maxLength = 0; // 최대길이
