@@ -12,9 +12,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
 
-//        String filePath = "src/algorithms/Java_Skill_Boost_Challenge/스위치_켜고_끄기_1244/input.txt";
-//        BufferedReader br = new BufferedReader(new FileReader(filePath));
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String filePath = "src/algorithms/Java_Skill_Boost_Challenge/스위치_켜고_끄기_1244/input.txt";
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int switchCount = Integer.parseInt(br.readLine());
         int[] switchStatus = new int[switchCount];
