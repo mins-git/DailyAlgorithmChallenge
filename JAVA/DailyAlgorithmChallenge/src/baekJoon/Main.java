@@ -1,4 +1,5 @@
 package baekJoon;
 
-public class Main {
+public class Main{
+
 }
