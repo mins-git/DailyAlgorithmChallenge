@@ -11,10 +11,10 @@
 
 ### 알고리즘 다지기 기초 백준 문제 추천
 #### Problem List
-- [수들의 합](https://www.acmicpc.net/problem/2559) (🥈실버 5티어)
-- [사탕 게임](https://www.acmicpc.net/problem/17281) (🥈실버 4티어)
+- [수들의 합](https://www.acmicpc.net/problem/1789) (🥈실버 5티어)
+- [사탕 게임](https://www.acmicpc.net/problem/3085) (🥈실버 4티어)
 - [동전 1](https://www.acmicpc.net/problem/2293) (🥈실버 1티어)
-- [동전 2](https://www.acmicpc.net/problem/2193) (🥈실버 1티어)
+- [동전 2](https://www.acmicpc.net/problem/2294) (🥈실버 1티어)
 - [단지번호붙이기](https://www.acmicpc.net/problem/2667) (🥈실버 1티어)
 - [감소하는 수](https://www.acmicpc.net/problem/1038) (🥇골드 5티어)
 - [가르침](https://www.acmicpc.net/problem/1062) (🥇골드 4티어)
@@ -35,7 +35,7 @@
 - [숨바꼭질 4](https://www.acmicpc.net/problem/13913) (🥇 골드 4티어)
 - [이모티콘](https://www.acmicpc.net/problem/14226) (🥇 골드 5티어)
 - [아기 상어2](https://www.acmicpc.net/problem/17086) (🥇 골드 5티어)
-- [달리기](https://www.acmicpc.net/problem/20200) (🏅 플래티넘 3티어)
+- [달리기](https://www.acmicpc.net/problem/2517) (🏅 플래티넘 3티어)
 
 ### DP 문제풀이 강훈련 백준 문제 추천
 
