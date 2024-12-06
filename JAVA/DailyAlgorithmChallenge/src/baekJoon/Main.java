@@ -4,47 +4,83 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-// 9375 패션왕 신해빈
+// 단지 번호 붙이기
 public class Main {
-    public static void main(String[] args) throws IOException {
-
-        String file = "src/baekJoon/input.txt";
-//        BufferedReader br =  new BufferedReader(new FileReader(file));
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int testCnt = Integer.parseInt(br.readLine());
-
-        for (int i = 0; i < testCnt; i++){
-            int clothingCnt = Integer.parseInt(br.readLine());
-            Map<String, Integer> categoryMap = new HashMap<>();
-
-            for (int j = 0; j<clothingCnt; j++){
-                String[] clothes = br.readLine().split(" ");  // 공백으로 나누어 배열에 저장
-                String category = clothes[1];
-
-                categoryMap.put(category, categoryMap.getOrDefault(category, 0) + 1);
-            }
-
-            int result = 1;
-            // 모든 카테고리에 대해 의상 선택 방법의 수 계산
-            for (int count : categoryMap.values()) {
-                result *= (count + 1);  // 의상 수 + 1 (선택하지 않음도 포함)
-            }
-
-            // 선택하지 않는 경우를 제외하기 위해 1을 뺌
-            System.out.println(result - 1);
-
+    public static int[] stringToIntArray(String str){
+        int[] arr = new int[str.length()];
+        for (int i = 0; i< str.length(); i++){
+            arr[i] = str.charAt(i) - '0';
         }
+        return arr;
+    }
+
+    private static int dfs(int[][] aptList, int r, int c, int[] dr, int[] dc, int N){
+        aptList[r][c] = 0; // 방문처리
+        int cnt = 1; // 현재 노드 포함
+
+        // 델타 진행
+        for (int d = 0; d < 4; d++){
+            int nr = r + dr[d];
+            int nc = c+ dc[d];
+
+            // 범위를 벗어나지 않고 아직 방문하지 않은 경우
+            if(nr >=0 && nr < N && nc >=0 && nc < N && aptList[nr][nc]==1 ){
+                cnt += dfs(aptList, nr, nc, dr, dc, N);
+            }
+        }
+        return cnt;
+    }
+
+    public static void main(String[] args) throws IOException {
+//        String input = "src/baekJoon/input.txt";
+//        BufferedReader br = new BufferedReader(new FileReader(input));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+
+        int[][] aptList = new int[N][N];
+
+        for (int i = 0; i < N; i++){
+            String line = br.readLine();
+            aptList[i] = stringToIntArray(line);
+        }
+
+        List<Integer> components = new ArrayList<>();
+
+        int[] dr = {0, 1, 0, -1}; //오아왼위
+        int[] dc = {1, 0, -1, 0}; // 오아왼위
+
+        // 순회
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (aptList[i][j] == 1){
+                    int cnt = dfs(aptList, i, j, dr, dc, N);
+                    components.add(cnt);
+                }
+            }
+        }
+
+        Collections.sort(components);
+        System.out.println(components.size());
+        components.forEach(System.out::println);
 
 
         /*
-        해빈이는 같은 조합을 다음날에 입지 않음.
-        알몸이 아닌 상태로 며칠동안 밖에 돌아다닐 수 있을까?
-         */
+        몇개의 리스트가 있을지 체크해야됨.
 
+        방법1)
+//   제외     1. 방문여부 확인을 위한 방문 list 생성: 해당 리스트는 숫자가 1이었는데 방문처리된 곳을 담고있음.
 
+        1. 만약 현재 위치가 1이면
+        2-1: 델타 진행시 오아왼위로 위의 가지수를 체크해서 DFS 진행하면됨.
+        2-2: DFS 과정중 방문처리는 1을 0으로 변경해주면됨. CNT를 저장해서 CNTLIST에 DFS CNT를 ADD해줘야함.
+        2-3: CNT ARRAYLIST를 SORT한 다음 출력
+        출력방식:
+        1. CNT ARRAYLSIT의 size 출력 후 엔터
+        2.남은 요소들 전부 출력
+       */
     }
 }
