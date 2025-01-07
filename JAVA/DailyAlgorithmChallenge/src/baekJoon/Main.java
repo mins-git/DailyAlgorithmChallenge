@@ -4,83 +4,167 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
 
-// 단지 번호 붙이기
-public class Main {
-    public static int[] stringToIntArray(String str){
-        int[] arr = new int[str.length()];
-        for (int i = 0; i< str.length(); i++){
-            arr[i] = str.charAt(i) - '0';
+public class Main{
+
+    public static int dfs(int r, int c, int[][] maze, HashMap<String, Boolean> visited, int N, int M, int[] dr, int[] dc, int depth){
+
+
+        // 방문처리
+        if (r == N -1  && c == M -1){
+            return depth;
         }
-        return arr;
-    }
 
-    private static int dfs(int[][] aptList, int r, int c, int[] dr, int[] dc, int N){
-        aptList[r][c] = 0; // 방문처리
-        int cnt = 1; // 현재 노드 포함
+        String key = r + "," + c;
+        if (visited.containsKey(key) && visited.get(key)){
+            return Integer.MAX_VALUE;
+        }
+        visited.put(key, true);
 
-        // 델타 진행
+        int minDepth = Integer.MAX_VALUE;
+
         for (int d = 0; d < 4; d++){
             int nr = r + dr[d];
-            int nc = c+ dc[d];
+            int nc = c + dc[d];
 
-            // 범위를 벗어나지 않고 아직 방문하지 않은 경우
-            if(nr >=0 && nr < N && nc >=0 && nc < N && aptList[nr][nc]==1 ){
-                cnt += dfs(aptList, nr, nc, dr, dc, N);
+            if (nr >= 0 && nr < N && nc >=0 && nc < M && maze[nr][nc] != 0){
+                int cnt = dfs(nr, nc, maze, visited,N, M, dr, dc,depth+1);
+                minDepth = Math.min(minDepth, cnt);
             }
         }
-        return cnt;
+
+        visited.put(key, false);
+
+        return minDepth;
     }
 
     public static void main(String[] args) throws IOException {
+
 //        String input = "src/baekJoon/input.txt";
 //        BufferedReader br = new BufferedReader(new FileReader(input));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
+        String [] NM = br.readLine().split(" ");
 
-        int[][] aptList = new int[N][N];
+        int N = Integer.parseInt(NM[0]);
+        int M = Integer.parseInt(NM[1]);
+
+        //가로(행) 세로(열)로 초기화
+        int[][] maze = new int[N][M];
 
         for (int i = 0; i < N; i++){
-            String line = br.readLine();
-            aptList[i] = stringToIntArray(line);
-        }
-
-        List<Integer> components = new ArrayList<>();
-
-        int[] dr = {0, 1, 0, -1}; //오아왼위
-        int[] dc = {1, 0, -1, 0}; // 오아왼위
-
-        // 순회
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if (aptList[i][j] == 1){
-                    int cnt = dfs(aptList, i, j, dr, dc, N);
-                    components.add(cnt);
-                }
+            char[] line = br.readLine().toCharArray();
+            for(int j = 0; j< M; j++){
+                // 아스키코드 48만큼 제거해주면됨.
+                maze[i][j] = line[j] - '0';
             }
         }
 
-        Collections.sort(components);
-        System.out.println(components.size());
-        components.forEach(System.out::println);
+        // deepToString을 사용하면 내부 내용까지 가지고 갈 수 있음.
+//        System.out.println(Arrays.deepToString(maze));
+
+        // 방문처리할 배열 선택 not in으로 체크하면됨.
+        HashMap<String, Boolean> visited = new HashMap<String, Boolean>();
+
+        // 오아왼위 델타
+        int[] dr = {0, 1, 0,-1};
+        int[] dc = {1, 0, -1,0};
+
+        int r = 0;
+        int c = 0;
+
+        int result = dfs(r, c, maze, visited, N, M, dr, dc, 1);
+
+        System.out.println(result);
+
+
 
 
         /*
-        몇개의 리스트가 있을지 체크해야됨.
+        N*M 배열의 미로가 있음.
 
-        방법1)
-//   제외     1. 방문여부 확인을 위한 방문 list 생성: 해당 리스트는 숫자가 1이었는데 방문처리된 곳을 담고있음.
+        1은 이동 할 수 있는 칸을 나타내고, 0은 이동할 수 없는 칸을 나타냄
+        이러한 미로가 존재할때 에,
 
-        1. 만약 현재 위치가 1이면
-        2-1: 델타 진행시 오아왼위로 위의 가지수를 체크해서 DFS 진행하면됨.
-        2-2: DFS 과정중 방문처리는 1을 0으로 변경해주면됨. CNT를 저장해서 CNTLIST에 DFS CNT를 ADD해줘야함.
-        2-3: CNT ARRAYLIST를 SORT한 다음 출력
-        출력방식:
-        1. CNT ARRAYLSIT의 size 출력 후 엔터
-        2.남은 요소들 전부 출력
-       */
+        (1,1) -> 출발해서 (N,M)으로 도착하는 최소의 칸 수를 구하는 프로그램 작성.
+
+        상화좌우로만 이동 가능
+
+        최소칸 출력
+        0번째 인덱스에서 출발 후 - > (N-1 번째 인덱스, M-1 번째인덱스)까지 도착가능하게 설정
+
+        깊이우선탐색 dfs하면될것같고,
+        도착할 수 없으면 0 출력해봐.
+        (N-1,M-1) 인덱스 도착시에 break하는 백트레킹을 사용하면됨.
+
+
+
+
+         */
     }
 }
+
+
+// 효율적인 코드는 아래와 같음.
+
+//public class Main {
+//
+//    // 방향: 우, 하, 좌, 상
+//    static int[] dr = {0, 1, 0, -1};
+//    static int[] dc = {1, 0, -1, 0};
+//
+//    public static void main(String[] args) throws IOException {
+//        String input = "src/baekJoon/input.txt";
+//        BufferedReader br = new BufferedReader(new FileReader(input));
+//
+//        String[] NM = br.readLine().split(" ");
+//        int N = Integer.parseInt(NM[0]);
+//        int M = Integer.parseInt(NM[1]);
+//
+//        // 미로 배열 초기화
+//        int[][] maze = new int[N][M];
+//        for (int i = 0; i < N; i++) {
+//            char[] line = br.readLine().toCharArray();
+//            for (int j = 0; j < M; j++) {
+//                maze[i][j] = line[j] - '0'; // '0'을 빼서 0과 1로 변환
+//            }
+//        }
+//
+//        // BFS를 위한 큐 초기화
+//        Queue<int[]> queue = new LinkedList<>();
+//        queue.offer(new int[]{0, 0}); // 출발점 (0, 0)
+//
+//        // 방문 처리 배열
+//        boolean[][] visited = new boolean[N][M];
+//        visited[0][0] = true;
+//
+//        // BFS 시작
+//        while (!queue.isEmpty()) {
+//            int[] curr = queue.poll();
+//            int r = curr[0];
+//            int c = curr[1];
+//
+//            // 목적지에 도달하면 결과 출력
+//            if (r == N - 1 && c == M - 1) {
+//                System.out.println(maze[r][c]);
+//                return;
+//            }
+//
+//            // 4방향 탐색
+//            for (int d = 0; d < 4; d++) {
+//                int nr = r + dr[d];
+//                int nc = c + dc[d];
+//
+//                // 미로 범위 내에 있고, 이동할 수 있는 곳인 경우
+//                if (nr >= 0 && nr < N && nc >= 0 && nc < M && maze[nr][nc] == 1 && !visited[nr][nc]) {
+//                    visited[nr][nc] = true;
+//                    maze[nr][nc] = maze[r][c] + 1; // 이전 칸에서 1을 더하여 거리를 기록
+//                    queue.offer(new int[]{nr, nc});
+//                }
+//            }
+//        }
+//
+//        // 도달 불가능한 경우 (보통 여기까지 오지 않음)
+//        System.out.println(0);
+//    }
+//}
