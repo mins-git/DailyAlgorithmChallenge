@@ -1,5 +1,3 @@
-package baekJoon;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main{
+public class 음식물피하기{
 
     // 우 하 좌 상
     static int[] dr = {0,1,0,-1};
