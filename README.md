@@ -24,12 +24,12 @@
 ### 최고빈출 DFS, BFS 기본문제
 
 #### Problem List
-- [DFS와 BFS](https://www.acmicpc.net/problem/1260) (🥈실버 1티어)
-- [전투](https://www.acmicpc.net/problem/1303) (🥈실버 1티어)
-- [미로 탐색](https://www.acmicpc.net/problem/2178) (🥈실버 1티어)
-- [음식물 피하기](https://www.acmicpc.net/problem/1743) (🥈실버 1티어)
-- [바이러스](https://www.acmicpc.net/problem/2606) (🥈실버 2티어)
-- [A → B](https://www.acmicpc.net/problem/16953) (🥇 골드 5티어)
+- ~~[DFS와 BFS](https://www.acmicpc.net/problem/1260) (🥈실버 1티어)~~
+- ~~[전투](https://www.acmicpc.net/problem/1303) (🥈실버 1티어)~~
+- ~~[미로 탐색](https://www.acmicpc.net/problem/2178) (🥈실버 1티어)~~
+- ~~[음식물 피하기](https://www.acmicpc.net/problem/1743) (🥈실버 1티어)~~
+- [바이러스](https://www.acmicpc.net/problem/2606) (🥈실버 3티어)
+- [A → B](https://www.acmicpc.net/problem/16953) (🥈 실버 2티어)
 - [숨바꼭질 2](https://www.acmicpc.net/problem/12851) (🥇 골드 5티어)
 - [숨바꼭질 3](https://www.acmicpc.net/problem/13549) (🥇 골드 5티어)
 - [숨바꼭질 4](https://www.acmicpc.net/problem/13913) (🥇 골드 4티어)
