@@ -4,65 +4,82 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
+// A -> B
 public class Main{
 
-    public static int bfs(Map<Integer, List<Integer>> graph, int start) {
-        Set<Integer> visited = new HashSet<>();
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(start);
-        visited.add(start);
-
-        int count = 0;
-
-        while (!queue.isEmpty()) {
-            int current = queue.poll();
-            count++;
-
-            for (int neighbor : graph.getOrDefault(current, Collections.emptyList())) {
-                if (!visited.contains(neighbor)) {
-                    visited.add(neighbor);
-                    queue.add(neighbor);
-                }
-            }
-        }
-        return count;
+    // 뒤에 1을 추가하는 코드
+    public static long stringPlusOne(long beforeInt) {
+        String result = Long.toString(beforeInt) + "1";
+        return Long.parseLong(result);
     }
+
+    // 2를 곱할 코드
+    public static long doubleTwo(long beforeInt){
+        return beforeInt * 2;
+    }
+
+    public static int bfs(long A, long B){
+
+        Queue <long[]> queue = new LinkedList<>();
+        queue.add(new long[]{A,1}); // 숫자와 연산 횟수 저장
+
+        while(!queue.isEmpty()){
+            long[] current = queue.poll();
+            long number = current[0];
+            int steps = (int) current[1];
+
+            // 목표값에 도달한 경우
+            if (number == B) {
+                return steps;
+            }
+
+            // 2를 곱한 값
+            long doubled = doubleTwo(number);
+            if (doubled <= B) {
+                queue.add(new long[]{doubled, steps + 1});
+            }
+
+            // 뒤에 1을 추가한 값
+            long appendedOne = stringPlusOne(number);
+            if (appendedOne <= B) {
+                queue.add(new long[]{appendedOne, steps + 1});
+            }
+
+        }
+        return -1;
+    }
+
     public static void main(String[] args) throws IOException {
+
 
 //        String input = "src/baekJoon/input.txt";
 //        BufferedReader br = new BufferedReader(new FileReader(input));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int coumputerCnt = Integer.parseInt(br.readLine());
-        int connenctCnt =  Integer.parseInt(br.readLine());
 
-        // 연결된 노드 작성
-        int [][] node = new int [connenctCnt][2];
+        String [] inputAB = br.readLine().split(" ");
 
-        for (int i = 0; i < connenctCnt; i++){
-            String [] inputA = br.readLine().split(" ");
-            int a = Integer.parseInt(inputA[0]);
-            int b = Integer.parseInt(inputA[1]);
-            node[i][0] = a;
-            node[i][1] = b;
-        }
-
-        // 인접 리스트 표현
-        Map<Integer, List<Integer>> graph = new HashMap<>();
-        for (int[] edge : node) {
-            graph.putIfAbsent(edge[0], new ArrayList<>());
-            graph.putIfAbsent(edge[1], new ArrayList<>());
-            graph.get(edge[0]).add(edge[1]);
-            graph.get(edge[1]).add(edge[0]); // 무향 그래프
-        }
+        long A = Long.parseLong(inputAB[0]);
+        long B = Long.parseLong(inputAB[1]);
 
 
-        int startNode = 1;
-        int count = bfs(graph, startNode);
+        int result= bfs(A,B);
 
-        System.out.println(count-1);
+        System.out.println(result);
+
+
+        /*
+        정수 A -> B로 변경한다면
+        2를 곱하거나
+        1을 수의 가장 오른쪽에 추가하거나 최솟값?
+
+        A -> B로 꾸는데 필요한 연산의 최솟값?
+
+        최솟값 : bfs를 사용해도 될것 같음.
+
+         */
 
     }
 }
