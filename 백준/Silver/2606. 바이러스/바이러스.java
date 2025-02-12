@@ -1,66 +1,51 @@
 import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
+import java.io.IOException;
 import java.util.*;
 
-public class Main{
+public class Main {
 
-    public static int bfs(Map<Integer, List<Integer>> graph, int start) {
-        Set<Integer> visited = new HashSet<>();
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(start);
-        visited.add(start);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int count = 0;
+        int computerCnt = Integer.parseInt(br.readLine());
+        int connectionCnt = Integer.parseInt(br.readLine());
 
-        while (!queue.isEmpty()) {
-            int current = queue.poll();
-            count++;
+        List<Integer>[] network = new ArrayList[computerCnt + 1];
+        for (int i = 1; i <= computerCnt; i++) {
+            network[i] = new ArrayList<>();
+        }
 
-            for (int neighbor : graph.getOrDefault(current, Collections.emptyList())) {
-                if (!visited.contains(neighbor)) {
-                    visited.add(neighbor);
-                    queue.add(neighbor);
+        for (int i = 0; i < connectionCnt; i++) {
+            String[] connection = br.readLine().split(" ");
+            int a = Integer.parseInt(connection[0]);
+            int b = Integer.parseInt(connection[1]);
+            network[a].add(b);
+            network[b].add(a);
+        }
+
+        System.out.println(countInfectedComputers(network));
+    }
+
+    private static int countInfectedComputers(List<Integer>[] network) {
+        boolean[] visited = new boolean[network.length];
+        Stack<Integer> stack = new Stack<>();
+        int infectedCount = 0;
+
+        stack.push(1);
+        visited[1] = true;
+
+        while (!stack.isEmpty()) {
+            int current = stack.pop();
+            for (int neighbor : network[current]) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    stack.push(neighbor);
+                    infectedCount++;
                 }
             }
         }
-        return count;
-    }
-    public static void main(String[] args) throws IOException {
 
-//        String input = "src/baekJoon/input.txt";
-//        BufferedReader br = new BufferedReader(new FileReader(input));
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int coumputerCnt = Integer.parseInt(br.readLine());
-        int connenctCnt =  Integer.parseInt(br.readLine());
-
-        // 연결된 노드 작성
-        int [][] node = new int [connenctCnt][2];
-
-        for (int i = 0; i < connenctCnt; i++){
-            String [] inputA = br.readLine().split(" ");
-            int a = Integer.parseInt(inputA[0]);
-            int b = Integer.parseInt(inputA[1]);
-            node[i][0] = a;
-            node[i][1] = b;
-        }
-
-        // 인접 리스트 표현
-        Map<Integer, List<Integer>> graph = new HashMap<>();
-        for (int[] edge : node) {
-            graph.putIfAbsent(edge[0], new ArrayList<>());
-            graph.putIfAbsent(edge[1], new ArrayList<>());
-            graph.get(edge[0]).add(edge[1]);
-            graph.get(edge[1]).add(edge[0]); // 무향 그래프
-        }
-
-
-        int startNode = 1;
-        int count = bfs(graph, startNode);
-
-        System.out.println(count-1);
-
+        return infectedCount;
     }
 }
