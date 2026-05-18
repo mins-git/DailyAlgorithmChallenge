@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/1002. 터렛" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1018. 체스판 다시 칠하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/10814. 나이순 정렬" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/10816. 숫자 카드 2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/10828. 스택" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/10845. 큐" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11399. ATM" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11650. 좌표 정렬하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11659. 구간 합 구하기 4" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11723. 집합" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1181. 단어 정렬" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11866. 요세푸스 문제 0" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1244. 스위치 켜고 끄기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1260. DFS와 BFS" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1303. 전쟁 － 전투" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1620. 나는야 포켓몬 마스터 이다솜" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/16953. A → B" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/17413. 단어 뒤집기 2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1743. 음식물 피하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1764. 듣보잡" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1789. 수들의 합" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/18110. solved．ac" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1920. 수 찾기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1966. 프린터 큐" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2164. 카드2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2606. 바이러스" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2667. 단지번호붙이기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2751. 수 정렬하기 2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/3085. 사탕 게임" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/7568. 덩치" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/9375. 패션왕 신해빈" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
